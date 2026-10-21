@@ -68,12 +68,12 @@ Table 2. All findings on the starter code
 | 24 | ParcelService.java:36; Main.java:15 | Null represents no available locker | AI | Connascence of convention | Yes – Both classes must understand the meaning of null. |
   
 
-2.1 Name two problems that only the AI review found.
+### 2.1 Name two problems that only the AI review found.
 -Incorrect String Comparison: In ParcelService.java, the code uses == instead of .equals() to compare strings. This can cause problems because == checks whether two objects are the same, not whether their text is the same.
 -Control Coupling: In Main.java and ParcelService.java, a Boolean value is used to control how the method works. This creates control coupling because one class controls the behavior of another class.
-2.2 Name one problem that only SonarQube found, or write none.
+### 2.2 Name one problem that only SonarQube found, or write none.
 SonarQube found that `Main.java` uses `System.out` instead of a logger (java:S106), but the AI did not mention this problem. However, I think using `System.out` is reasonable because this is a command-line program.
-2.3 Name one AI finding that was wrong or too vague, and explain why. If every finding was right, explain how you checked them.
+### 2.3 Name one AI finding that was wrong or too vague, and explain why. If every finding was right, explain how you checked them.
 I think the AI finding about logical cohesion in `Main.java` was too general. The AI said that handling different commands in one method is a design problem. However, I think it makes sense because the main method needs to handle user commands in this program. The code could be improved, but I don't think this automatically means the design is bad.
 ## Task 3. Fix and check
 
