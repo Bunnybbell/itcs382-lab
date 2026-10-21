@@ -1,16 +1,16 @@
 # Lab Report, Code Quality and Design Quality
 
-Repository URL:
+Repository URL:https://github.com/Bunnybbell/itcs382-lab
 
 ## Tools
 
 | Item | Version or name |
 | --- | --- |
-| JDK | |
-| Maven | |
-| IDE | |
-| SonarQube for IDE | |
-| AI tool and exact model | |
+| JDK | Eclipse Temurin OpenJDK 25.0.4.1 (LTS) |
+| Maven |Apache Maven 3.10.0 |
+| IDE |Visual Studio Code 1.143.0 (User Setup) |
+| SonarQube for IDE |6.1.1 |
+| AI tool and exact model |ChatGPT (GPT-6) |
 
 ## Task 1. SonarQube on the starter code
 
@@ -87,7 +87,7 @@ Table 3. What you did with each SonarQube issue in Table 1
 | 4 | Kept | `System.out.println()` displays the number of free lockers. This is intended CLI output. |
 
 
-Number of SonarQube issues that remain after your fixes:
+Number of SonarQube issues that remain after your fixes:4
 
 The two design problems that you fixed
 
@@ -99,7 +99,19 @@ The two design problems that you fixed
 Output of the program after your fixes, for the commands `store P1 6501 2`, `pickup P1 5` and `staff`, and the content of parcels.csv:
 
 ```text
+Commands: store <code> <studentId> <size 1-3>, pickup <code> <days>, list, staff, quit
+store P1 6501 2
+SMS to 6501: parcel P1 is in locker 2
+Locker 2
+pickup P1 5
+Fee: 30.0
+staff
+P1 6501 PICKED_UP
+Free lockers: 3
+quit
 
+parcels.csv:
+P1,PICKED_UP
 ```
 
 ## Task 4. AI-generated poor and good designs
