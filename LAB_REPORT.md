@@ -39,9 +39,6 @@ Table 2. All findings on the starter code
 
 | No. | File:line | Finding | Found by (SonarQube, AI or both) | SonarQube rule or course term | Correct? (yes or no, and why) |
 | --- | --- | --- | --- | --- | --- |
-
-| No. | File:line | Finding | Found by (SonarQube, AI or both) | SonarQube rule or course term | Correct? (yes or no, and why) |
-| --- | --- | --- | --- | --- | --- |
 | 1 | Main.java:9 | System.out used instead of a logger | SonarQube | java:S106 | Yes – System.out is used, but console output is intentional in this CLI application. |
 | 2 | Main.java:15 | System.out used instead of a logger | SonarQube | java:S106 | Yes – System.out is used to display the store result. |
 | 3 | Main.java:17 | System.out used instead of a logger | SonarQube | java:S106 | Yes – System.out is used to display the pickup fee. |
@@ -69,8 +66,8 @@ Table 2. All findings on the starter code
   
 
 ### 2.1 Name two problems that only the AI review found.
--Incorrect String Comparison: In ParcelService.java, the code uses == instead of .equals() to compare strings. This can cause problems because == checks whether two objects are the same, not whether their text is the same.
--Control Coupling: In Main.java and ParcelService.java, a Boolean value is used to control how the method works. This creates control coupling because one class controls the behavior of another class.
+- Incorrect String Comparison: In ParcelService.java, the code uses == instead of .equals() to compare strings. This can cause problems because == checks whether two objects are the same, not whether their text is the same.
+- Control Coupling: In Main.java and ParcelService.java, a Boolean value is used to control how the method works. This creates control coupling because one class controls the behavior of another class.
 ### 2.2 Name one problem that only SonarQube found, or write none.
 SonarQube found that `Main.java` uses `System.out` instead of a logger (java:S106), but the AI did not mention this problem. However, I think using `System.out` is reasonable because this is a command-line program.
 ### 2.3 Name one AI finding that was wrong or too vague, and explain why. If every finding was right, explain how you checked them.
