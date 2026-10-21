@@ -81,7 +81,11 @@ Table 3. What you did with each SonarQube issue in Table 1
 
 | No. in Table 1 | Fixed or kept | Commit, or the reason for keeping it |
 | --- | --- | --- |
-| 1 | | |
+| 1 | Kept | `System.out.println()` displays instructions to users in this command-line application. |
+| 2 | Kept | `System.out.println()` displays the locker number after storing a parcel. This is intended CLI output. |
+| 3 | Kept | `System.out.println()` displays the pickup fee to the user. A logger is not necessary for this output. |
+| 4 | Kept | `System.out.println()` displays the number of free lockers. This is intended CLI output. |
+
 
 Number of SonarQube issues that remain after your fixes:
 
@@ -89,8 +93,8 @@ The two design problems that you fixed
 
 | Design problem (course term) | What you changed | Commit |
 | --- | --- | --- |
-| | | |
-| | | |
+| Control Coupling | I replaced `printParcels(boolean forStaff)` with two separate methods, `printStaffParcels()` and `printWaitingParcels()`, to remove the Boolean flag that controlled the method's behavior. | `88c7488` |
+| Content Coupling | I changed `Parcel.status` from public to private, added `getStatus()` and `setStatus()`, and updated `ParcelService.java` to use these methods instead of accessing the status directly. | `0fee7da` |
 
 Output of the program after your fixes, for the commands `store P1 6501 2`, `pickup P1 5` and `staff`, and the content of parcels.csv:
 
