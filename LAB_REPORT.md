@@ -20,17 +20,20 @@ Table 1. SonarQube issues in the starter code
 
 | No. | Rule | File:line | Message |
 | --- | --- | --- | --- |
-| 1 | | | |
+| 1 |java:S106|Main.java:9|Replace this use of System.out by a logger.|
+| 2 |java:S106|Main.java:15|Replace this use of System.out by a logger.|
+| 3 |java:S106|Main.java:17|Replace this use of System.out by a logger.|
+| 4 |java:S106|Main.java:22|Replace this use of System.out by a logger.|
 
 ## Task 2. AI review of the starter code
 
 | Item | Value |
 | --- | --- |
-| Date | |
-| AI tool and exact model | |
-| Commit reviewed | |
-| How the AI read the files (attached the files, opened the folder, or pasted the files) | |
-| Output file in the reviews folder | |
+| Date |21/10/2026 |
+| AI tool and exact model |ChatGPT (GPT-6)|
+| Commit reviewed |7586cdf|
+| How the AI read the files (attached the files, opened the folder, or pasted the files) |Attached 4 Java files directly to ChatGPT (Locker.java, Main.java, Parcel.java, ParcelService.java)|
+| Output file in the reviews folder |reviews/parcelpoint-review.md|
 
 Table 2. All findings on the starter code
 
