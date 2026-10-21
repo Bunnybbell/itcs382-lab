@@ -106,33 +106,39 @@ Output of the program after your fixes, for the commands `store P1 6501 2`, `pic
 
 | Item | bikeshare-poor | bikeshare-good |
 | --- | --- | --- |
-| Date | | |
-| AI tool and exact model | | |
-| Prompt (B or C as given, or your changed prompt in full) | | |
-| Builds with mvn package (yes or no) | | |
-| Number of classes, interfaces, enums and records | | |
-| SonarQube issues, total | | |
-| SonarQube issues, by rule | | |
-| AI review findings in Check 1 | | |
-| AI review findings in Check 2 | | |
-| Review output file in the reviews folder | | |
+| Date |22/10/2026|22/10/2026 |
+| AI tool and exact model |ChatGPT (GPT-6) |ChatGPT (GPT-6) |
+| Prompt (B or C as given, or your changed prompt in full) |Prompt B as given |Prompt C as given |
+| Builds with mvn package (yes or no) |Yes | Yes|
+| Number of classes, interfaces, enums and records |1 class, 0 interfaces, 0 enums, 0 records |6 classes, 1 interface, 2 enums, 2 records|
+| SonarQube issues, total | 38 | 9  |
+| SonarQube issues, by rule |java:S106 (27), java:S2386 (5), java:S1192 (2), java:S1220 (1), java:S3776 (1), java:S6213 (1), java:S135 (1) | java:S106 (9) |
+| AI review findings in Check 1 |9 |5|
+| AI review findings in Check 2 |11|3 |
+| Review output file in the reviews folder | reviews/bikeshare-poor-review.md |reviews/bikeshare-good-review.md |
 
 4.1 Did SonarQube report any cohesion or coupling problem in bikeshare-poor? Quote the rule and the message if it did.
-
+No, SonarQube did not directly find any cohesion or coupling problems in bikeshare-poor. However, it found java:S3776: "Refactor this method to reduce its Cognitive Complexity." This shows that the method is too complicated, but it is not directly about cohesion or coupling. The AI review was able to find these design problems.
 4.2 Did the AI review tell the two versions apart? Give one finding for bikeshare-poor that does not appear for bikeshare-good.
-
+Yes, the AI found 20 problems in bikeshare-poor, but only 8 in bikeshare-good. One example is that bikeshare-poor uses public static fields to store shared data. This can cause common coupling because different parts of the program depend on the same data. The AI did not find this problem in bikeshare-good because the fields are private.
 4.3 Which version would you rather extend with a new member type, such as a visitor who pays 4 baht per minute, and why?
-
+I would choose bikeshare-good because the code is easier to understand and modify. It uses an enum for member types and has a separate class for calculating fees. If I wanted to add a visitor who pays 4 baht per minute, I would mainly need to update the enum and fee calculation. In bikeshare-poor, the code uses integer codes and shared data, so making changes would be more difficult.
 ## Task 5. Reflection
 
 5.1 What does SonarQube check, and what does it not check? Answer with examples from this lab.
-
+SonarQube checks code quality problems such as duplicated strings, public static fields, and complex methods. For example, it found 38 issues in bikeshare-poor, including java:S2386 and java:S3776. However, it cannot fully check design problems like cohesion and coupling. We still need to use AI reviews and our own understanding to check these problems.
 5.2 When should you not trust the AI review? Give an example from this lab.
-
+I should not trust AI reviews without checking the actual code first because AI can sometimes give unclear or incorrect findings. For example, the AI said that handling different commands in Main.java of ParcelPoint was a logical cohesion problem. However, I think it is normal for a command-line program to handle user commands in the main method. This shows that I should check AI findings before deciding whether they are correct.
 5.3 What will you do differently in Project Phase 2 after this lab?
+In Project Phase 2, I will try to design classes with clear responsibilities instead of putting everything in one class. I will also pay more attention to cohesion, coupling, and encapsulation. Before submitting my code, I will use SonarQube and AI reviews to find possible problems and check them myself.
 
 ## AI usage declaration
 
 | AI tool and exact model | Purpose | Files or parts that it produced or changed | How you checked its output |
 | --- | --- | --- | --- |
-| | | | |
+| ChatGPT (GPT-6) | Review ParcelPoint code and find code quality and design problems. | `reviews/parcelpoint-review.md` | Compared the AI findings with the Java code and SonarQube results. |
+| ChatGPT (GPT-6) | Help fix problems in ParcelPoint. | `ParcelService.java`, `Parcel.java`, `Main.java` | Ran Maven and tested the parcel storage, pickup, fee calculation, and CSV file. |
+| ChatGPT (GPT-6) | Generate poor BikeShare code using Prompt B. | `bikeshare-poor/pom.xml`, `bikeshare-poor/src/main/java/BikeShare.java` | Built and tested the program and checked SonarQube findings. |
+| ChatGPT (GPT-6) | Generate good BikeShare code using Prompt C. | `bikeshare-good/pom.xml` and 11 Java files | Built and tested the program and checked SonarQube findings. |
+| ChatGPT (GPT-6) | Review both BikeShare versions using Prompt A. | `reviews/bikeshare-poor-review.md`, `reviews/bikeshare-good-review.md` | Compared the AI findings with the code and SonarQube results. |
+| ChatGPT (GPT-6) | Help write and organize the lab report. | `LAB_REPORT.md` | Checked the answers against the actual results and Git commits. |
