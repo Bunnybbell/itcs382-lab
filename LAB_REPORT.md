@@ -39,14 +39,42 @@ Table 2. All findings on the starter code
 
 | No. | File:line | Finding | Found by (SonarQube, AI or both) | SonarQube rule or course term | Correct? (yes or no, and why) |
 | --- | --- | --- | --- | --- | --- |
-| 1 | | | | | |
+
+| No. | File:line | Finding | Found by (SonarQube, AI or both) | SonarQube rule or course term | Correct? (yes or no, and why) |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Main.java:9 | System.out used instead of a logger | SonarQube | java:S106 | Yes – System.out is used, but console output is intentional in this CLI application. |
+| 2 | Main.java:15 | System.out used instead of a logger | SonarQube | java:S106 | Yes – System.out is used to display the store result. |
+| 3 | Main.java:17 | System.out used instead of a logger | SonarQube | java:S106 | Yes – System.out is used to display the pickup fee. |
+| 4 | Main.java:22 | System.out used instead of a logger | SonarQube | java:S106 | Yes – System.out is used to display locker information. |
+| 5 | Main.java:6–29 | Scanner is never closed | AI | Resource handling | Yes – The Scanner is created without being closed. |
+| 6 | ParcelService.java:74–81 | FileWriter is never closed | AI | Resource handling | Yes – The writer is not closed, which may cause data loss. |
+| 7 | ParcelService.java:42 | Strings are compared using `==` instead of `.equals()` | AI | String comparison | Yes – `==` compares references rather than string contents. |
+| 8 | Main.java:11–17 | Input arguments are not validated | AI | Input validation | Yes – Missing arguments may cause exceptions. |
+| 9 | ParcelService.java:39–54 | Returning 0 for a missing parcel is ambiguous | AI | Ambiguous result | Yes – A valid pickup can also have a zero fee. |
+| 10 | ParcelService.java:75–81 | Empty catch block ignores IOException | AI | Error handling | Yes – Errors are silently ignored. |
+| 11 | ParcelService.java:6 | Unused Date import | AI | Unused import | Yes – Date is imported but never used. |
+| 12 | ParcelService.java:12 | Unused maxParcels field | AI | Unused field | Yes – The field is declared but never read. |
+| 13 | Main.java:6–25 | Multiple commands handled in one method | AI | Logical cohesion | No – Command dispatch is an intended responsibility of the CLI entry point; branching alone does not prove poor design. |
+| 14 | ParcelService.java:64–71 | Boolean parameter controls different reporting behaviours | AI | Logical cohesion | Yes – The flag selects between reporting behaviours. |
+| 15 | ParcelService.java:24–80 | Class handles storage, fees, notifications and file persistence | AI | Class cohesion | Yes – Multiple responsibilities are combined in one class. |
+| 16 | Main.java:19–21; ParcelService.java:64–68 | Boolean argument controls ParcelService behaviour | AI | Control coupling | Yes – The caller controls which reporting branch executes. |
+| 17 | Parcel.java:7 | Public status field allows direct modification | AI | Content coupling | Yes – Other classes can directly access the field. |
+| 18 | ParcelService.java:20–21; Main.java:22 | Internal locker collection is returned directly | AI | Strong coupling / collection exposure | Yes – Callers can modify the internal list. |
+| 19 | ParcelService.java:52–59 | Entire Parcel object passed when only size is needed | AI | Stamp coupling | Yes – The fee method only requires the parcel size. |
+| 20 | Parcel.java:13; ParcelService.java:28,44,68 | Hardcoded strings represent parcel statuses | AI | Connascence of convention | Yes – Classes depend on matching status strings. |
+| 21 | Locker.java:5; Parcel.java:6 | Shared numeric codes represent parcel sizes | AI | Connascence of convention | Yes – Classes must agree on size codes 1, 2 and 3. |
+| 22 | Main.java:13; Parcel.java:9–12 | Parcel constructor depends on argument order | AI | Connascence of position | Yes – Two String arguments can be accidentally swapped. |
+| 23 | ParcelService.java:15–17; Locker.java:8–10 | Locker constructor depends on integer argument order | AI | Connascence of position | Yes – Swapping the two integers would still compile. |
+| 24 | ParcelService.java:36; Main.java:15 | Null represents no available locker | AI | Connascence of convention | Yes – Both classes must understand the meaning of null. |
+  
 
 2.1 Name two problems that only the AI review found.
-
+-Incorrect String Comparison: In ParcelService.java, the code uses == instead of .equals() to compare strings. This can cause problems because == checks whether two objects are the same, not whether their text is the same.
+-Control Coupling: In Main.java and ParcelService.java, a Boolean value is used to control how the method works. This creates control coupling because one class controls the behavior of another class.
 2.2 Name one problem that only SonarQube found, or write none.
-
+SonarQube found that `Main.java` uses `System.out` instead of a logger (java:S106), but the AI did not mention this problem. However, I think using `System.out` is reasonable because this is a command-line program.
 2.3 Name one AI finding that was wrong or too vague, and explain why. If every finding was right, explain how you checked them.
-
+I think the AI finding about logical cohesion in `Main.java` was too general. The AI said that handling different commands in one method is a design problem. However, I think it makes sense because the main method needs to handle user commands in this program. The code could be improved, but I don't think this automatically means the design is bad.
 ## Task 3. Fix and check
 
 Table 3. What you did with each SonarQube issue in Table 1
